@@ -6,6 +6,7 @@ class Song(BaseModel):
 	id: Optional[int]
 	name: str
 	difficulty: int
+	link: Optional[str]
 	added: Optional[datetime]
 
 

@@ -15,7 +15,7 @@ class SongRepository:
 
 	def get_song(self, song_id):
 		command = f"""
-			SELECT id, name, difficulty, added FROM songs
+			SELECT id, name, difficulty, link, added FROM songs
 			WHERE id = {song_id}
 		"""
 		try:
@@ -26,7 +26,8 @@ class SongRepository:
 				'id': song_props[0], 
 				'name': song_props[1],
 				'difficulty': song_props[2],
-				'added': song_props[3]
+				'link': song_props[3],
+				'added': song_props[4]
 			}
 
 			return result
@@ -34,10 +35,26 @@ class SongRepository:
 		except Exception as ex:
 			raise ex
 
+	def get_songId_by_name(self, song_name):
+		command = f"""
+			SELECT id FROM songs 
+			WHERE name = '{song_name}'
+		"""
+
+		try:
+			self.cursor.execute(command)
+			song_props = self.cursor.fetchone()
+			song_id = song_props[0]
+			return song_id
+
+		except Exception as ex:
+			raise ex
+
 
 	def get_songs(self):
 		command = """
-			SELECT * FROM songs
+			SELECT id, name, difficulty FROM songs
+			ORDER BY added DESC
 		"""
 
 		try:
@@ -49,8 +66,7 @@ class SongRepository:
 				result.append({
 					'id': song_props[0], 
 					'name': song_props[1],
-					'difficulty': song_props[2],
-					'added': song_props[3]
+					'difficulty': song_props[2]
 				})
 
 			return result
@@ -78,12 +94,23 @@ class SongRepository:
 		if song.id is None:
 			raise Exception('Song.Id is not defined')
 
-		command = f"""
-			UPDATE songs SET 
-			    name = '{song.name}', 
-			    difficulty = {song.difficulty}
-			WHERE id = {song.id}
-		"""
+		command = ''
+
+		if song.link is None:
+			command = f"""
+				UPDATE songs SET 
+					name = '{song.name}', 
+					difficulty = {song.difficulty}
+				WHERE id = {song.id}
+			"""
+		else:
+			command = f"""
+				UPDATE songs SET 
+					name = '{song.name}', 
+					difficulty = {song.difficulty},
+					link = '{song.link}'
+				WHERE id = {song.id}
+			"""
 
 		try:
 			self.cursor.execute(command)
@@ -113,6 +140,7 @@ class SongRepository:
 				id SERIAL NOT NULL PRIMARY KEY, 
 				name VARCHAR (50) NOT NULL,
 				difficulty SMALLINT NOT NULL,
+				link VARCHAR (255) DEFAULT NULL,
 				added TIMESTAMP NOT NULL
 			)
 		"""

@@ -1,0 +1,46 @@
+.container {
+    min-height: 100vh;
+    height: 100%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    background-color: #111111;
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    font-family: 'Parisienne';
+}
+
+.loader-wrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.song {
+    margin-bottom: 7px;
+}
+
+.create-button-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1;
+    border-radius: 50%;
+    border: 1px solid #2e333b;
+}
+
+.create-song-modal {
+    background-color: #24272c;
+    border-radius: 10px;
+    border: 1px solid black;
+    opacity: 0.995;
+    margin-top: 100px;
+    margin-left: 5vw;
+    width: 90vw;
+    height: 50vh;
+    min-height: 300px;
+}

@@ -1,0 +1,74 @@
+.song-info-container {
+    display: 'flex';
+    height: 100vh;
+    width: 100vw;
+    background: #111111;
+    position: 'relative';
+}
+
+.name-wrapper {
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+    font-family: 'Parisienne';
+}
+
+.edit-song-modal {
+    background-color: #24272c;
+    border-radius: 10px;
+    border: 1px solid black;
+    opacity: 0.995;
+    margin-top: 60px;
+    margin-left: 5vw;
+    width: 90vw;
+    height: 62vh;
+    min-height: 300px;
+}
+
+.validate-modal {
+    background-color: #24272c;
+    border-radius: 10px;
+    border: 1px solid black;
+    opacity: 0.995;
+    margin-top: 35vh;
+    margin-left: 10vw;
+    width: 80vw;
+    height: 25vh;
+    min-height: 100px;
+}
+
+.validate-modal-content-wrapper {
+    outline: none;
+    height: 100%;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.validate-modal-button-wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+.delete-button-wrapper {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1;
+    border-radius: 50%;
+    border: 1px solid #2e333b;
+}
+
+.edit-button-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1;
+    border-radius: 50%;
+    border: 1px solid #2e333b;
+}
+

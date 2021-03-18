@@ -1,9 +1,8 @@
 from datetime import datetime
-from fastapi import APIRouter, UploadFile, File, HTTPException
-from fastapi.responses import FileResponse
+from fastapi import APIRouter, HTTPException
 from models.song import Song
-from models.file_manager import Filemanager
 from models.song_repository import SongRepository
+from models.file_manager import Filemanager
 
 router = APIRouter()
 
@@ -16,7 +15,7 @@ async def get_song(song_id: str):
 		return song
 
 	except:
-		raise HTTPException(status_code=404, detail='Item not found')
+		raise HTTPException(status_code=404, detail='Song not found')
 
 
 @router.get("/Songs", tags=["Songs"])
@@ -26,7 +25,7 @@ async def get_songs():
 		return songs
 
 	except:
-		raise HTTPException(status_code=404, detail='Items not found')
+		raise HTTPException(status_code=404, detail='Songs not found')
 
 
 @router.post("/Song", tags=["Songs"])
@@ -34,7 +33,8 @@ async def add_song(song: Song):
 	try:
 		song.added = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 		repository.add_song(song)
-		return { 'status': 'OK' }
+		songId = repository.get_songId_by_name(song.name)
+		return { 'id': songId }
 
 	except Exception as ex:
 		raise HTTPException(status_code=400, detail='Unable to add Song')
@@ -54,6 +54,11 @@ async def edit_song(song: Song):
 async def remove_song(song_id: str):
 	try:
 		repository.remove_song(song_id)
+		# Remove Audio File if exists
+		audio_path = Filemanager.get_song_path(song_id)
+		if Filemanager.file_exists(audio_path):
+			Filemanager.delete_song(audio_path)
+
 		return { 'status': 'OK' }
 
 	except Exception as ex:
