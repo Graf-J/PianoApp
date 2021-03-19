@@ -5,7 +5,7 @@ class SongRepository:
 
 	def __init__(self):
 		try:
-			self.con = psycopg2.connect(database="postgres", user="postgres", password="password", host="192.168.178.48", port="5432")
+			self.con = psycopg2.connect(database="postgres", user="postgres", password="password", host="db", port="5432")
 			self.cursor = self.con.cursor()
 			self.create_table()
 

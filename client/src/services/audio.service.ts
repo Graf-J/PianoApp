@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SERVER_URL = 'http://192.168.178.32:8000';
+const SERVER_URL = 'http://server:8000';
 
 const getAudioStatus = (id: string): Promise<boolean> => {
     return new Promise(async (resolve, reject) => {
