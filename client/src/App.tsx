@@ -9,7 +9,6 @@ const App: React.FC = () => {
     <Router>
       <Switch>
         <Route path='/' exact component={SongList}/>
-        <Route path='/songs' exact component={SongList} />
         <Route path='/song/:id' exact component={SongInfo} />
         <Route path='*' component={NotFound404} />
       </Switch>

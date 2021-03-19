@@ -16,7 +16,7 @@ class SongRepository:
 	def get_song(self, song_id):
 		command = f"""
 			SELECT id, name, difficulty, link, added FROM songs
-			WHERE id = {song_id}
+			WHERE id = {song_id};
 		"""
 		try:
 			self.cursor.execute(command)
@@ -38,7 +38,7 @@ class SongRepository:
 	def get_songId_by_name(self, song_name):
 		command = f"""
 			SELECT id FROM songs 
-			WHERE name = '{song_name}'
+			WHERE name = '{song_name}';
 		"""
 
 		try:
@@ -54,7 +54,7 @@ class SongRepository:
 	def get_songs(self):
 		command = """
 			SELECT id, name, difficulty FROM songs
-			ORDER BY added DESC
+			ORDER BY added DESC;
 		"""
 
 		try:
@@ -78,7 +78,7 @@ class SongRepository:
 	def add_song(self, song: Song):
 		command = f"""
 			INSERT INTO songs (name, difficulty, added)
-			VALUES ('{song.name}', {song.difficulty}, '{song.added}')
+			VALUES ('{song.name}', {song.difficulty}, '{song.added}');
 		"""
 
 		try:
@@ -101,7 +101,7 @@ class SongRepository:
 				UPDATE songs SET 
 					name = '{song.name}', 
 					difficulty = {song.difficulty}
-				WHERE id = {song.id}
+				WHERE id = {song.id};
 			"""
 		else:
 			command = f"""
@@ -109,7 +109,7 @@ class SongRepository:
 					name = '{song.name}', 
 					difficulty = {song.difficulty},
 					link = '{song.link}'
-				WHERE id = {song.id}
+				WHERE id = {song.id};
 			"""
 
 		try:
@@ -123,7 +123,7 @@ class SongRepository:
 	def remove_song(self, song_id: str):
 		command = f"""
 			DELETE FROM songs 
-			WHERE id = {song_id}
+			WHERE id = {song_id};
 		"""
 
 		try:
@@ -142,7 +142,7 @@ class SongRepository:
 				difficulty SMALLINT NOT NULL,
 				link VARCHAR (255) DEFAULT NULL,
 				added TIMESTAMP NOT NULL
-			)
+			);
 		"""
 
 		try:

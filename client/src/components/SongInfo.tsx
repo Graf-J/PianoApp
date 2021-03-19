@@ -75,7 +75,7 @@ const SongInfo = ({ match }: RouteComponentProps<RouteParams>) => {
             closeValidateModal();
             setIsDeleting(true);
             await deleteSong(match.params.id);
-            history.push(`/songs`);
+            history.push(`/`);
         }
         catch (ex) {
             setError(ex.message);
@@ -126,7 +126,7 @@ const SongInfo = ({ match }: RouteComponentProps<RouteParams>) => {
             { song &&
                 <div style={{ borderTop: `3px solid ${getDifficultyColor(song.difficulty)}` }}>
                     { isDeleting && <LinearProgress color='secondary' /> }
-                    <IconButton aria-label="delete" onClick={ () => history.push(`/songs`) } style={{ marginTop: '10px', marginLeft: '10px' }}>
+                    <IconButton aria-label="delete" onClick={ () => history.push(`/`) } style={{ marginTop: '10px', marginLeft: '10px' }}>
                         <ArrowBackIosIcon fontSize="large" color="secondary" />
                     </IconButton>
                     <div className='name-wrapper'>
