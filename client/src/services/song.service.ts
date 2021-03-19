@@ -1,7 +1,7 @@
 import axios from 'axios';
 import ISong from '../models/ISong';
 
-const SERVER_URL = 'http://server:8000';
+const SERVER_URL = `http://${window.location.hostname}:8000`;
 
 const getSongs = (): Promise<ISong[]> => {
     return new Promise(async (resolve, reject) => {
