@@ -1,6 +1,7 @@
 # Server
 venv
 __pycache__
+files
 
 # Client
 node_modules
